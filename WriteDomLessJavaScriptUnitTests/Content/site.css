@@ -1,0 +1,22 @@
+﻿body {
+    color: #333;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    min-width: 20em;
+}
+
+tbody tr:nth-child(2n) {
+    background-color: #ccc;
+}
+
+td {
+    padding: 0;
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+}

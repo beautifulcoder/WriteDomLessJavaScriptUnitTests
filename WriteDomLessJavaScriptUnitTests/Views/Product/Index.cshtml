@@ -1,0 +1,30 @@
+﻿@model ProductAllViewModel
+
+@{
+    ViewBag.Title = "Demo";
+    var departments = Model.Departments.Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name }).ToList();
+    departments.Insert(0, new SelectListItem { Value = "0", Text = "All" });
+}
+
+@Html.DropDownList("departments", departments)
+<button id="retrieve" data-url="@Url.Action("Index", "Product")">Retrieve</button>
+<p>List of products:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Department</th>
+        </tr>
+    </thead>
+    <tbody id="products" data-products="@Json.Encode(Model.Products)" data-departments="@Json.Encode(Model.Departments)">
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price.ToString("c")</td>
+                <td>@Model.Departments.First(x => x.Id == product.DepartmentId).Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
